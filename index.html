@@ -130,56 +130,91 @@
                 <li><i class="icofont-rounded-right"></i> <strong>City:</strong> Orillia, ON</li>
               </ul>
 
+
+              
+
+<!-- PERSONAL INTRESTS ANIMATION ATEMPT BEGIN -->
+
               <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Personal Interests Animation</title>
-              <style>
-                body {
-                  font-family: Arial, sans-serif;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: center;
-                  height: 100vh;
-                  background-color: #f4f4f4;
-                }
-            
-                .interests {
-                  font-size: 2rem;
-                  font-weight: bold;
-                  opacity: 0;
-                  animation: fadeIn 2s forwards;
-                }
-            
-                .arrow {
-                  margin-top: 20px;
-                  font-size: 3rem;
-                  opacity: 0;
-                  animation: slideDown 2s forwards 2s;
-                }
-            
-                @keyframes fadeIn {
-                  to {
-                    opacity: 1;
-                  }
-                }
-            
-                @keyframes slideDown {
-                  0% {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                  }
-                  100% {
-                    opacity: 1;
-                    transform: translateY(0);
-                  }
-                }
-              </style>
-            </head>
-            <body>
-            
-              <div class="interests">Personal Interests</div>
-              <div class="arrow">⬇️</div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Interests Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .interests, .arrow {
+      font-size: 2rem;
+      font-weight: bold;
+      opacity: 0;
+    }
+
+    .arrow {
+      margin-top: 20px;
+      font-size: 3rem;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Add a hidden class for animation control */
+    .animate .interests {
+      animation: fadeIn 2s forwards;
+    }
+
+    .animate .arrow {
+      animation: slideDown 2s forwards 2s;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="about" class="about">
+    <div class="interests">Personal Interests</div>
+    <div class="arrow">⬇️</div>
+  </section>
+
+  <script>
+    // Create an intersection observer to detect when the "About" section comes into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const aboutSection = document.querySelector('#about');
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add class to trigger animation when in view
+            aboutSection.classList.add('animate');
+          }
+        });
+      });
+
+      // Start observing the "about" section
+      observer.observe(aboutSection);
+    });
+  </script>
+<!-- PERSONAL INTRESTS ANIMATION ATEMPT END -->
+
+
 
 
             </div>
