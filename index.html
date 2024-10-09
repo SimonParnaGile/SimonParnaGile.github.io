@@ -131,7 +131,7 @@
               </ul>
 
 
-              
+
 
 <!-- PERSONAL INTRESTS ANIMATION ATEMPT BEGIN -->
 
@@ -141,6 +141,12 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      height: 200vh; /* To create scrollable space for testing */
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -152,7 +158,7 @@
     .interests, .arrow {
       font-size: 2rem;
       font-weight: bold;
-      opacity: 0;
+      opacity: 0; /* Start with hidden elements */
     }
 
     .arrow {
@@ -177,7 +183,6 @@
       }
     }
 
-    /* Add a hidden class for animation control */
     .animate .interests {
       animation: fadeIn 2s forwards;
     }
@@ -189,26 +194,27 @@
 </head>
 <body>
 
+  <!-- Scrollable page with the about section -->
   <section id="about" class="about">
     <div class="interests">Personal Interests</div>
     <div class="arrow">⬇️</div>
   </section>
 
   <script>
-    // Create an intersection observer to detect when the "About" section comes into view
     document.addEventListener('DOMContentLoaded', function() {
       const aboutSection = document.querySelector('#about');
-
       const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Add class to trigger animation when in view
+            // Add class to trigger animation when the section is in view
             aboutSection.classList.add('animate');
+            observer.unobserve(aboutSection); // Stop observing once triggered
           }
         });
+      }, {
+        threshold: 0.5 // Trigger when at least 50% of the section is visible
       });
 
-      // Start observing the "about" section
       observer.observe(aboutSection);
     });
   </script>
